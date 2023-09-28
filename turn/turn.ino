@@ -1,3 +1,6 @@
+//libraries
+#include <List.hpp>
+
 //globals
 int blinkCheck;
 int tempCheck;
@@ -8,27 +11,32 @@ int turn2 = 5;
 
 int blinker = 2;
 
+List<int> pinControl(false);
+
 void setup() {
+  pinControl.add(4);
+  pinControl.add(6);
+  pinControl.add(7);
+  pinControl.add(8);
+  pinControl.add(9);
+  pinControl.add(10);
+
+
   pinMode(turn1, OUTPUT);
   pinMode(turn2, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(9, OUTPUT);
-  pinMode(10, OUTPUT);
 
+  for(int i = 0; i < pinControl.getSize(); i++){
+    pinMode(pinControl.getValue(i), OUTPUT);
+  }
 }
 
 void loop() {
   digitalWrite(turn1, HIGH);
   digitalWrite(turn2, HIGH);
-  digitalWrite(4, HIGH);
-  digitalWrite(6, HIGH);
-  digitalWrite(7, HIGH);
-  digitalWrite(8, HIGH);
-  digitalWrite(9, HIGH);
-  digitalWrite(10, HIGH);
+
+  for(int i = 0; i < pinControl.getSize(); i++){
+    digitalWrite(pinControl.getValue(i), HIGH);
+  }
 
   blinkCheck = digitalRead(blinker);
 
